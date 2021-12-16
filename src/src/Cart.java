@@ -13,10 +13,7 @@ public class Cart {
         this.cartId = cartId;
         this.cartItems = cartItems;
     }
-
-//    public double getCartPrice() {
-//        return cartPrice;
-//    }
+    
 
     public JSONObject toJsonObject(){
         JSONObject cart = new JSONObject();
