@@ -1,7 +1,26 @@
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CartApi {
-    ArrayList<Cart> carts;
+    HashMap<String, Cart> carts;
+
+    public JSONObject handleViewCart( ){
+        return null;
+    }
+    public JSONObject handleAddItemToCart(){
+        return null;
+    }
+    public JSONObject handleAddDiscount(){
+        return null;
+    }
+    public JSONObject handleChangeItemQuantity(String cartId, String itemId, int updatedQuantity){
+        return null;
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println("hello");
 //        CartItem cartItem = new CartItem("1", "Cheese", "Yum", "img", 1.2, 1);
