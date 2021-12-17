@@ -42,13 +42,18 @@ public class Cart {
 
     }
 
-    public void setItemQuantity(String id, int amount){
+    public boolean setItemQuantity(String id, int amount){
         for(int i = 0; i < cartItems.size(); i++){
             if(cartItems.get(i).itemId.equals(id)){
+                if(amount == 0){
+                    cartItems.remove(i);
+                    return true;
+                }
                 cartItems.get(i).itemQuantity = amount;
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     public double getSubtotal(){

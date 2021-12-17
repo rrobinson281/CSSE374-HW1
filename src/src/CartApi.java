@@ -6,17 +6,35 @@ import java.util.HashMap;
 public class CartApi {
     HashMap<String, Cart> carts;
 
+    public CartApi(HashMap<String, Cart> carts) {
+        this.carts = carts;
+    }
+
     public JSONObject handleViewCart( ){
         return null;
     }
     public JSONObject handleAddItemToCart(){
         return null;
     }
-    public JSONObject handleAddDiscount(){
+    public JSONObject handleAddDiscount(String userID, String cartID, String discountCode){
+
         return null;
     }
     public JSONObject handleChangeItemQuantity(String cartId, String itemId, int updatedQuantity){
-        return null;
+        JSONObject changeItemQuantityResponse = new JSONObject();
+
+        boolean result = carts.get(cartId).setItemQuantity(itemId, updatedQuantity);
+        if(result && updatedQuantity == 0){
+            changeItemQuantityResponse.put("Status:", "Item Removed From Cart");
+        }
+        else if(result){
+            changeItemQuantityResponse.put("Status:", "Item Quantity Changed");
+        }
+        else{
+            changeItemQuantityResponse.put("Status:", "Failed to update quantity");
+        }
+
+        return changeItemQuantityResponse;
     }
 
 
