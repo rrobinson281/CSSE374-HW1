@@ -27,10 +27,15 @@ public class Cart {
         return cart;
     }
 
-    public JSONObject viewCart(){
+    public JSONObject viewCart(double tax){
         JSONObject cart = new JSONObject();
+        cart.put("Cart", this.toJsonObject());
+        cart.put("Subtotal", this.getSubtotal());
+        cart.put("DiscountPrice", this.discountPrice());
+        cart.put("Tax", tax);
 
-        return null;
+
+        return cart;
     }
 
     public void addCartItem(CartItem item, int quantity){

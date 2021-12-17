@@ -24,6 +24,7 @@ public abstract class Item {
         item.put("Description", description);
         item.put("Image", image);
         item.put("Price", price);
+        item.put("In Stock", inStock);
         return item;
     }
 }

@@ -3,6 +3,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class CartApi {
     HashMap<String, Cart> carts;
     ArrayList<CartItem> items;
@@ -12,9 +13,41 @@ public class CartApi {
         this.items = new ArrayList<>();
     }
 
-    public JSONObject handleViewCart( ){
-        return null;
+    public JSONObject handleViewCart(String cartID, String state){
+        JSONObject viewCart = new JSONObject();
+        Cart currentCart = carts.get(cartID);
+        double tax = 0.0;
+        if(currentCart != null){
+            if(state != null){
+                tax = addTax(currentCart, state);
+                currentCart.viewCart(tax);
+                viewCart = currentCart.viewCart(tax);
+                return viewCart;
+            }
+            viewCart = currentCart.viewCart(tax);
+            return viewCart;
+        }
+        viewCart.put("Status", "Invalid Cart");
+        return viewCart;
     }
+    public double addTax(Cart cart, String state){
+        double tax = 0.0;
+        switch (state.toLowerCase()){
+            case "in":
+               tax = cart.discountPrice() * 1.07;
+               break;
+            case "il":
+                tax = cart.discountPrice() * 1.06;
+                break;
+            case "oh":
+                tax = cart.discountPrice() * 1.05;
+                break;
+
+        }
+
+        return tax;
+    }
+
     public JSONObject handleAddItemToCart(String itemID, int itemQuantity, String cartID){
         JSONObject addItemToCart = new JSONObject();
         Cart currentCart = carts.get(cartID);
@@ -72,6 +105,8 @@ public class CartApi {
 
         return changeItemQuantityResponse;
     }
+
+
 
 
 
