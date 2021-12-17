@@ -12,12 +12,12 @@ public class DiscountManager {
         discountList = new HashMap<>();
     }
 
-    public void addDiscount(String userID, String discountId, Cart cart){
+    public int addDiscount(String userID, String discountId, Cart cart){
         Double discount = discountList.get(discountId);
         Integer attempts = userDiscountAttempts.get(userID);
         if(attempts != null && attempts >= 5){
             System.out.println("banned gg ez");
-            return;
+            return 0; // User can not make anymore attempts
         }
         if(discount == null){
             if(userID != null){
@@ -30,13 +30,12 @@ public class DiscountManager {
             }
             if(!expireDiscountList.contains(discountId)) {
                 System.out.println("Invalid code");
-                return;
+                return 1; // user input an invalid
             }
             System.out.println("expired code");
-            return;
+            return 2; // user input an expired code
         }
         cart.addDiscount(discount);
-
-
+        return 3; //valid code
     }
 }

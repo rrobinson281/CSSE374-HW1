@@ -7,6 +7,7 @@ public abstract class Item {
     public String description;
     public String image;
     public double price;
+    public boolean inStock;
 
 //    public Item(String itemId, String name, String description, String image, double price) {
 //        this.itemId = itemId;

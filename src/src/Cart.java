@@ -33,7 +33,8 @@ public class Cart {
         return null;
     }
 
-    public void addCartItem(CartItem item){
+    public void addCartItem(CartItem item, int quantity){
+        item.itemQuantity = quantity;
         cartItems.add(item);
     }
 
