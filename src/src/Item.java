@@ -9,14 +9,6 @@ public abstract class Item {
     public double price;
     public boolean inStock;
 
-//    public Item(String itemId, String name, String description, String image, double price) {
-//        this.itemId = itemId;
-//        this.name = name;
-//        this.description = description;
-//        this.image = image;
-//        this.price = price;
-//    }
-
     public JSONObject toJsonObject(){
         JSONObject item = new JSONObject();
         item.put("ID", itemId);

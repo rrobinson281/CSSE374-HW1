@@ -106,21 +106,5 @@ public class CartApi {
         return changeItemQuantityResponse;
     }
 
-
-
-
-
-//    public static void main(String[] args) {
-//        CartItem cartItem = new CartItem("1", "Sprite", "16 oz can", "img", 1.89, 2, true);
-//        CartItem cartItem1 = new CartItem("2", "Pepsi", "16 oz can", "img", 2.89, 1, true);
-//        ArrayList<CartItem> itemList = new ArrayList<>();
-//        itemList.add(cartItem);
-//        itemList.add(cartItem1);
-//        Cart cart = new Cart("Cart1", itemList);
-//        cart.discountTotals.add(0.25);
-//        JSONObject result = new JSONObject();
-//        result = cart.viewCart(1);
-//        System.out.println(result);
-//    }
 }
 
