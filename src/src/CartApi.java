@@ -16,14 +16,10 @@ public class CartApi {
     public JSONObject handleViewCart(String cartID, String state){
         JSONObject viewCart = new JSONObject();
         Cart currentCart = carts.get(cartID);
-        double tax = 0.0;
+        double tax;
         if(currentCart != null){
-            if(state != null){
-                tax = addTax(currentCart, state);
-                currentCart.viewCart(tax);
-                viewCart = currentCart.viewCart(tax);
-                return viewCart;
-            }
+            tax = addTax(currentCart, state);
+            currentCart.viewCart(tax);
             viewCart = currentCart.viewCart(tax);
             return viewCart;
         }
@@ -73,9 +69,9 @@ public class CartApi {
         addItemToCart.put("Status", "Item does not exist");
         return addItemToCart;
     }
-    public JSONObject handleAddDiscount(String userID, String cartID, String discountCode){
+    public JSONObject handleAddDiscount(String userID, String cartID, String discountCode, DiscountManager dm){
         JSONObject addDiscountResponse = new JSONObject();
-        DiscountManager discountManager = new DiscountManager();
+        DiscountManager discountManager = dm;
         int response = discountManager.addDiscount(userID, discountCode, carts.get(cartID));
         switch (response){
             case 0:
@@ -104,7 +100,7 @@ public class CartApi {
             changeItemQuantityResponse.put("Status:", "Item Quantity Changed");
         }
         else{
-            changeItemQuantityResponse.put("Status:", "Failed to update quantity");
+            changeItemQuantityResponse.put("Status:", "Item not in Cart");
         }
 
         return changeItemQuantityResponse;
