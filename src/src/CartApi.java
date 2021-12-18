@@ -32,19 +32,23 @@ public class CartApi {
     }
     public double addTax(Cart cart, String state){
         double tax = 0.0;
-        switch (state.toLowerCase()){
-            case "in":
-               tax = cart.discountPrice() * 1.07;
-               break;
-            case "il":
-                tax = cart.discountPrice() * 1.06;
-                break;
-            case "oh":
-                tax = cart.discountPrice() * 1.05;
-                break;
+        if(state != null) {
+            switch (state.toLowerCase()) {
+                case "in":
+                    tax = cart.discountPrice() * 1.07;
+                    break;
+                case "il":
+                    tax = cart.discountPrice() * 1.06;
+                    break;
+                case "oh":
+                    tax = cart.discountPrice() * 1.05;
+                    break;
 
+            }
         }
-
+        else {
+            tax = cart.discountPrice();
+        }
         return tax;
     }
 
@@ -110,15 +114,17 @@ public class CartApi {
 
 
 
-    public static void main(String[] args) {
-        System.out.println("hello");
-//        CartItem cartItem = new CartItem("1", "Cheese", "Yum", "img", 1.2, 1);
-//        CartItem cartItem2 = new CartItem("2", "Apple", "Yummy", "img", 0.2, 2);
-//        ArrayList<Item> itemList = new ArrayList<>();
+//    public static void main(String[] args) {
+//        CartItem cartItem = new CartItem("1", "Sprite", "16 oz can", "img", 1.89, 2, true);
+//        CartItem cartItem1 = new CartItem("2", "Pepsi", "16 oz can", "img", 2.89, 1, true);
+//        ArrayList<CartItem> itemList = new ArrayList<>();
 //        itemList.add(cartItem);
-//        itemList.add(cartItem2);
-//        Cart cart = new Cart("2", 50.0, itemList);
-//        System.out.println(cart.toJsonObject());
-    }
+//        itemList.add(cartItem1);
+//        Cart cart = new Cart("Cart1", itemList);
+//        cart.discountTotals.add(0.25);
+//        JSONObject result = new JSONObject();
+//        result = cart.viewCart(1);
+//        System.out.println(result);
+//    }
 }
 

@@ -16,7 +16,6 @@ public class DiscountManager {
         Double discount = discountList.get(discountId);
         Integer attempts = userDiscountAttempts.get(userID);
         if(attempts != null && attempts >= 5){
-            System.out.println("banned gg ez");
             return 0; // User can not make anymore attempts
         }
         if(discount == null){
@@ -29,10 +28,8 @@ public class DiscountManager {
                 }
             }
             if(!expireDiscountList.contains(discountId)) {
-                System.out.println("Invalid code");
                 return 1; // user input an invalid
             }
-            System.out.println("expired code");
             return 2; // user input an expired code
         }
         cart.addDiscount(discount);

@@ -12,6 +12,7 @@ public class Cart {
     public Cart(String cartId, ArrayList<CartItem> cartItems) {
         this.cartId = cartId;
         this.cartItems = cartItems;
+        this.discountTotals = new ArrayList<>();
     }
 
 
